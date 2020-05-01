@@ -68,4 +68,9 @@ t_room	*new_maze(t_str room, unsigned int type);
 void	add_room(t_room **maze, t_str room, unsigned int type);
 t_room	*init_rooms(t_log *data);
 
+/*
+**	linked list functions
+*/
+t_room *create_node(t_str line)
+
 #endif
