@@ -16,8 +16,6 @@ int		ft_only_digits(char *str)
 {
 	while (*str)
 	{
-		if (*str == '-')
-			str++;
 		if (!ft_isdigit(*str))
 			return (0);
 		str++;
