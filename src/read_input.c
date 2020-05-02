@@ -21,44 +21,6 @@
 
 #include <stdio.h>
 
-// Checking whether it is a command. By identifying if input has ##
-int		is_command(char *line)
-{
-	if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
-		return (1);
-	return (0);
-}
-
-int        is_comment(char *line)
-{
-    if (line[0] == '#' && line[1] != '#')
-        return (1);
-    return (0);
-}
-
-// Checking whether input is a room. By checking if wordcount is three.
-int		is_room(char *line)
-{
-	if (ft_wordcount(line, ' ') == 3)
-		return (1);
-	return (0);
-}
-
-// Checking whether if there is a - between numbers. **Could cause negative ants to think it's a link
-int		is_link(char *line)
-{
-	char *str;
-
-	str = line;
-	while (*str)
-	{
-		if (*str == '-')
-			return (1);
-		str++;
-	}
-	return (0);
-}
-
 t_log		*read_input(char *line)
 {
 	t_log	*data;

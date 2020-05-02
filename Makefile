@@ -31,12 +31,12 @@ db:
 	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)
 
 clean:
-	rm -fr $(NAME) $(NAME).dSYM
 	rm -f libft/*.o
 
 fclean: clean
-	rm -f libft/*.o libft/libft.a
+	rm -f libft/libft.a
+	rm -fr $(NAME) $(NAME).dSYM
 
-re: clean all
+re: all clean
 
 redb: clean db
