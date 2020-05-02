@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2019/09/28 07:04:38 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/02 12:32:17 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		is_command(char *line);
 int		is_comment(char *line);
 int		is_room(char *line);
 int		is_link(char *line);
-t_log	*read_input(char *line);
+t_str	*read_input(char *line);
 
 /*
 **	validation functions
@@ -56,7 +56,6 @@ char	*get_room_name(char *room);
 int		check_name(t_log *data/*, int phase*/);
 int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
-t_log	*read_input(char *line);
 void	validate(t_log *data);
 int     validate_file(char *line);
 /*
