@@ -24,7 +24,7 @@
 t_str		*read_input(char *line)
 {
 	int i;
-	t_str *raw_data = NULL;
+	t_str *raw_data;
 
 	i = 0;
 	raw_data = (t_str *)malloc(sizeof(t_str) * 2048);
