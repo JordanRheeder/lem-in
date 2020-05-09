@@ -38,33 +38,32 @@
 
 typedef char *t_str;
 
-typedef struct s_room
+typedef struct		s_room
 {
-	unsigned int room_type : 2;
-	t_str name;
-	unsigned int x : 8;
-	unsigned int y : 8;
-	unsigned int visited;
-	struct s_room *next;
-	struct s_room **room_links;
-} t_room;
+	t_str						name;
+	unsigned int		room_type : 2;
+	unsigned int		x : 8;
+	unsigned int		y : 8;
+	unsigned int		visited;
+	t_links					**room_links;
+}									t_room;
 
-typedef struct			s_links
+typedef struct		s_links
 {
-	char				*name;
-	struct s_rooms		*room;
-	struct s_links		*next;
-}						t_links;
+	t_room					*room;
+	t_links					*next;
+	t_links					*prev;
+}									t_links;
 
-typedef struct s_log
+typedef struct		s_log
 {
-	int ant_amnt;		 //make unsigned ints
-	int start_index; //make unsigned ints
-	int end_index;	 //make unsigned ints
-	int room_count;
-	t_room **rooms;
-	t_str *links;
-} t_log;
+	int							ant_amnt;
+	int							start_index;
+	int							end_index;
+	int							room_count;
+	t_str						*links;
+	t_room					**rooms;
+}									t_log;
 
 /*
 **	read_input functions
@@ -97,11 +96,13 @@ t_room *init_rooms(t_log *data);
 */
 t_room *create_node(t_str line);
 t_log *create_node_array(t_str *raw_data);
-t_log **create_links(t_log *node_array, t_str *raw_data, int i);
+t_log *create_links(t_log *node_array, t_str *raw_data, int i);
 
 /*
 **	helper functions
 */
+// t_links *create_link_node(t_room *room);
 int room_count(t_str *raw_data);
+t_room	*find_room(t_room **rooms, t_room *room);
 
 #endif

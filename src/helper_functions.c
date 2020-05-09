@@ -26,4 +26,32 @@ int room_count(t_str *raw_data)
     i++;
   }
   return (j);
-} 
+}
+
+t_room *find_room(t_room **rooms, t_room *room)
+{
+  int i;
+
+  i = 0;
+  while (rooms[i])
+  {
+    if (ft_strequ(rooms[i]->name, room->name))
+      return (rooms[i]);
+    i++;
+  }
+  return (rooms[i]);
+}
+
+// t_links *create_link_node(t_room *room)
+// {
+//   t_links *node;
+
+//   node = (t_links *)malloc(sizeof(t_links));
+//   if (node)
+//   {
+//     node->next = NULL;
+//     node->prev = NULL; 
+//     node->room = room;
+//   }
+//   return (node);
+// }

@@ -12,34 +12,6 @@
 
 #include "../includes/colony.h"
 
-/*
-int main()
-{
-  char  *line;
-  // Required variables
-  int i;
-  t_room **node_array;
-  t_room *node;
-  i = 0;
-  node_array = (t_room **)malloc(sizeof(t_room *));
-  while (get_next_line(0, &line))
-  {
-    // Required code inside get_next_line() loop
-    if (is_room(line)) {
-      node = create_node(line);
-      node_array[i] = (t_room *)malloc(sizeof(node));
-      node_array[i] = node;
-      i++;
-    }
-  }
-  i = 0;
-  while (node_array[i]) {
-    printf("node_array[%d]:\n\tname: %s; x: %d; y: %d\n\n", i, node_array[i]->name, node_array[i]->x, node_array[i]->y);
-    i++;
-  }
-}
-*/
-
 t_room *create_node(t_str line)
 {
 	t_room *node;
@@ -56,39 +28,41 @@ t_room *create_node(t_str line)
 	return (node);
 }
 
-t_log **create_links(t_log *node_array, t_str *raw_data, int i)
+t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 {
-	int i;
 	int j;
 	int k;
 	int l;
 	char **rooms;
-	t_room **room_duplicates;
 
-	i = 0;
 	while (raw_data[i])
 	{
 		if (is_link(raw_data[i]))
 		{
 			j = 0;
 			k = 0;
+			l = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
 			while (rooms[0] != node_array->rooms[j]->name)
 				j++;
 			while (rooms[1] != node_array->rooms[k]->name)
 				k++;
-			node_array->rooms[j]->room_links = (t_room *)malloc(sizeof(t_room) * node_array->room_count);
-			// l = 0;
-			// node_array->rooms[1]->room_links[0] = node_array->rooms[k];
-			// l++;
 
-			//	if (link) {
-			//		create_struct(data);
-			//		link new struct with last created struct
-			//	} else if (!link) {
-			//		create_struct(data);
-			//		set link in struct to last createcd struct.
-			//	}
+			if (node_array->rooms[j]->room_links)
+			{
+				t_links *new_node;
+				new_node->room = node_array->rooms[k];
+				while (node_array->rooms[j]->room_links[l])
+					l++;
+				node_array->rooms[j]->room_links[l]->next = new_node;
+				new_node->prev = node_array->rooms[j]->room_links[l];
+			}
+			else
+			{
+				t_links *new_node;
+				new_node->room = node_array->rooms[k];
+				node_array->rooms[j]->room_links[l] = new_node;
+			}
 		}
 		i++;
 	}
@@ -130,7 +104,7 @@ t_log *create_node_array(t_str *raw_data)
 		}
 		i++;
 	}
-	create_links(&node_array, raw_data, i);
+	create_links(node_array, raw_data, i);
 	free(raw_data);
 	return (node_array);
 }

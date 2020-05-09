@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "stdio.h": "c",
-    "colony.h": "c"
+    "colony.h": "c",
+    "typeinfo": "c"
   }
 }
