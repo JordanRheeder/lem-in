@@ -42,16 +42,11 @@ t_room *find_room(t_room **rooms, t_room *room)
   return (rooms[i]);
 }
 
-// t_links *create_link_node(t_room *room)
-// {
-//   t_links *node;
+t_links *create_link_node()
+{
+  t_links * node;
 
-//   node = (t_links *)malloc(sizeof(t_links));
-//   if (node)
-//   {
-//     node->next = NULL;
-//     node->prev = NULL; 
-//     node->room = room;
-//   }
-//   return (node);
-// }
+  node = (t_links *)malloc(sizeof(t_links));
+  node->next = NULL;
+  return (node);
+}

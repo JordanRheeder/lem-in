@@ -38,6 +38,13 @@
 
 typedef char *t_str;
 
+typedef struct		s_links
+{
+	struct	s_room	*room;
+	struct	s_links	*next;
+	struct	s_links	*prev;
+}									t_links;
+
 typedef struct		s_room
 {
 	t_str						name;
@@ -45,15 +52,8 @@ typedef struct		s_room
 	unsigned int		x : 8;
 	unsigned int		y : 8;
 	unsigned int		visited;
-	t_links					**room_links;
+	struct	s_links	*room_links;
 }									t_room;
-
-typedef struct		s_links
-{
-	t_room					*room;
-	t_links					*next;
-	t_links					*prev;
-}									t_links;
 
 typedef struct		s_log
 {
@@ -62,7 +62,7 @@ typedef struct		s_log
 	int							end_index;
 	int							room_count;
 	t_str						*links;
-	t_room					**rooms;
+	struct	s_room	**rooms;
 }									t_log;
 
 /*
@@ -101,7 +101,7 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i);
 /*
 **	helper functions
 */
-// t_links *create_link_node(t_room *room);
+t_links *create_link_node();
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
 

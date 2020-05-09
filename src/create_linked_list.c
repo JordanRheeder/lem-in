@@ -25,6 +25,7 @@ t_room *create_node(t_str line)
 	node->name = room_data[0];
 	node->x = atoi(room_data[1]);
 	node->y = atoi(room_data[2]);
+	node->room_links = (t_links *)malloc(sizeof(t_links));
 	return (node);
 }
 
@@ -32,8 +33,8 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 {
 	int j;
 	int k;
-	int l;
 	char **rooms;
+	// t_links *temp;
 
 	while (raw_data[i])
 	{
@@ -41,28 +42,26 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 		{
 			j = 0;
 			k = 0;
-			l = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
-			while (rooms[0] != node_array->rooms[j]->name)
+			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
 				j++;
-			while (rooms[1] != node_array->rooms[k]->name)
+			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
 				k++;
-
-			if (node_array->rooms[j]->room_links)
-			{
-				t_links *new_node;
-				new_node->room = node_array->rooms[k];
-				while (node_array->rooms[j]->room_links[l])
-					l++;
-				node_array->rooms[j]->room_links[l]->next = new_node;
-				new_node->prev = node_array->rooms[j]->room_links[l];
-			}
-			else
-			{
-				t_links *new_node;
-				new_node->room = node_array->rooms[k];
-				node_array->rooms[j]->room_links[l] = new_node;
-			}
+			t_links *new_node;
+			new_node = create_link_node();
+			new_node->room = node_array->rooms[k];
+			// if (!node_array->rooms[j]->room_links->room) {
+				ft_putstr("New List\n");
+				node_array->rooms[j]->room_links->room = new_node->room;
+			// } else {
+			// 	ft_putstr("Adding to List\n");
+			// 	temp = node_array->rooms[j]->room_links;
+			// 	while (temp->next)
+			// 		temp = temp->next;
+			// 	temp->next = new_node;
+			// 	new_node->prev = temp;
+			// }
+			// free(temp);
 		}
 		i++;
 	}
