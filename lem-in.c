@@ -28,17 +28,19 @@ int main()
 	int i = 0;
 	while (node_array->rooms[i])
 	{
-		ft_putstr("Room Name: ");
+		ft_putstr("Room: ");
 		ft_putstr(node_array->rooms[i]->name);
-		ft_putstr("; Linked Room Names: ");
+		ft_putstr("; Links: ");
 		t_room *temp;
 		temp = node_array->rooms[i]->room_links->room;
 		while (temp)
 		{
 			ft_putstr(temp->name);
-			ft_putstr(", ");
+			if (temp->next)
+				ft_putstr(", ");
 			temp = temp->next;
 		}
+			ft_putstr(";\n");
 		i++;
 	}
 	// TODO: Perform algorithm
