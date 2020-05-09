@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+         #
+#    By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 09:03:24 by rengelbr          #+#    #+#              #
-#    Updated: 2019/09/09 09:08:29 by rengelbr         ###   ########.fr        #
+#    Updated: 2020/05/09 11:22:35 by rengelbr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,6 @@ fclean: clean
 	rm -f libft/libft.a
 	rm -fr $(NAME) $(NAME).dSYM
 
-re: all clean
+re: fclean all clean
 
 redb: clean db
