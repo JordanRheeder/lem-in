@@ -47,11 +47,10 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				j++;
 			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
 				k++;
-			if (!node_array->rooms[j]->room_links->room && node_array->rooms[j]->room_type != 1) {
-				ft_putstr("New List\n");
+			if (!node_array->rooms[j]->room_links->room && node_array->rooms[j]->room_type != 1)
 				node_array->rooms[j]->room_links->room = node_array->rooms[k];
-			} else if (node_array->rooms[j]->room_type != 1) {
-				ft_putstr("Adding to List\n");
+			else if (node_array->rooms[j]->room_type != 1)
+			{
 				temp = node_array->rooms[j]->room_links->room;
 				while (temp->next)
 					temp = temp->next;
