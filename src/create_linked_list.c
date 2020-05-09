@@ -34,7 +34,7 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	// t_links *temp;
+	t_room *temp;
 
 	while (raw_data[i])
 	{
@@ -47,21 +47,16 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				j++;
 			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
 				k++;
-			t_links *new_node;
-			new_node = create_link_node();
-			new_node->room = node_array->rooms[k];
-			// if (!node_array->rooms[j]->room_links->room) {
+			if (!node_array->rooms[j]->room_links->room && node_array->rooms[j]->room_type != 1) {
 				ft_putstr("New List\n");
-				node_array->rooms[j]->room_links->room = new_node->room;
-			// } else {
-			// 	ft_putstr("Adding to List\n");
-			// 	temp = node_array->rooms[j]->room_links;
-			// 	while (temp->next)
-			// 		temp = temp->next;
-			// 	temp->next = new_node;
-			// 	new_node->prev = temp;
-			// }
-			// free(temp);
+				node_array->rooms[j]->room_links->room = node_array->rooms[k];
+			} else if (node_array->rooms[j]->room_type != 1) {
+				ft_putstr("Adding to List\n");
+				temp = node_array->rooms[j]->room_links->room;
+				while (temp->next)
+					temp = temp->next;
+				temp->next = node_array->rooms[k];
+			}
 		}
 		i++;
 	}

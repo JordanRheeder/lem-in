@@ -53,6 +53,7 @@ typedef struct		s_room
 	unsigned int		y : 8;
 	unsigned int		visited;
 	struct	s_links	*room_links;
+	struct	s_room	*next;
 }									t_room;
 
 typedef struct		s_log

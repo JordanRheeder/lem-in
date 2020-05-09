@@ -31,15 +31,14 @@ int main()
 		ft_putstr("Room Name: ");
 		ft_putstr(node_array->rooms[i]->name);
 		ft_putstr("; Linked Room Names: ");
-		// t_links *temp;
-		// temp = ;
-		// while (temp->next)
-		// {
-		ft_putstr(node_array->rooms[i]->room_links->room->name);
-		ft_putstr(";\n");
-		// 	ft_putstr(", ");
-		// 	temp = temp->next;
-		// }
+		t_room *temp;
+		temp = node_array->rooms[i]->room_links->room;
+		while (temp)
+		{
+			ft_putstr(temp->name);
+			ft_putstr(", ");
+			temp = temp->next;
+		}
 		i++;
 	}
 	// TODO: Perform algorithm
