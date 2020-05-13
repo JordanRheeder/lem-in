@@ -33,7 +33,6 @@
 		exit(2);                                       \
 	}
 #include "../libft/libft.h"
-#include "../includes/colony.h"
 #include <stdio.h>
 
 typedef char *t_str;
@@ -48,10 +47,11 @@ typedef struct		s_links
 typedef struct		s_room
 {
 	t_str						name;
-	unsigned int		room_type : 2;
+	int							dead_end;
+	int							visited;
+	unsigned int		room_type;
 	unsigned int		x : 8;
 	unsigned int		y : 8;
-	unsigned int		visited;
 	struct	s_links	*room_links;
 	struct	s_room	*next;
 }									t_room;
@@ -102,8 +102,13 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i);
 /*
 **	helper functions
 */
-t_links *create_link_node();
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
+void print_map(	t_log *node_array);
+
+/*
+**	algo functions
+*/
+void algo(t_log *node_array);
 
 #endif

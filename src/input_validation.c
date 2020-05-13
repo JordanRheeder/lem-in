@@ -37,8 +37,8 @@ int		is_room(char *line)
 	if (ft_wordcount(line, ' ') == 3)
 	{
 		split_room = ft_strsplit(line, ' ');
-		if (ft_only_digits(split_room[1]) && ft_only_digits(split_room[2])
-			 && !ft_strequ(split_room[0][0], "L") && !ft_strequ(split_room[0][0], "l"))
+		if (ft_only_digits(split_room[1]) && ft_only_digits(split_room[2]))
+			//  && !ft_strequ(split_room[0][0], "L") && !ft_strequ(split_room[0][0], "l"))
 		{
 			ft_free_two_d_arr((void**)split_room);
 			return (1);
@@ -54,11 +54,7 @@ int		is_link(char *line)
 	char *str;
 
 	str = line;
-	while (*str)
-	{
-		if (*str == '-')
-			return (1);
-		str++;
-	}
+	if (ft_strchr(str, '-') )
+		return (1);
 	return (0);
 }

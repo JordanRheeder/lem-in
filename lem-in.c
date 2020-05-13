@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/colony.h"
-#include <stdio.h>
+
 int main()
 {
 	char *line;
@@ -19,30 +19,23 @@ int main()
 	t_log *node_array;
 
 	line = NULL;
-	printf("reading input\n");
+	// printf("reading input\n");
 	raw_data = read_input(line);
-	printf("validating input\n");
+	// printf("validating input\n");
 	validate_file(raw_data);
-	printf("storing input\n");
+	// printf("storing input\n");
 	node_array = create_node_array(raw_data);
 	int i = 0;
 	while (node_array->rooms[i])
 	{
-		ft_putstr("Room: ");
 		ft_putstr(node_array->rooms[i]->name);
-		ft_putstr("; Links: ");
-		t_room *temp;
-		temp = node_array->rooms[i]->room_links->room;
-		while (temp)
-		{
-			ft_putstr(temp->name);
-			if (temp->next)
-				ft_putstr(", ");
-			temp = temp->next;
-		}
-			ft_putstr(";\n");
+		ft_putstr(": ");
+		ft_putnbr(node_array->rooms[i]->room_type);
+		ft_putstr("\n");
 		i++;
 	}
+	// print_map(node_array);
+	algo(node_array);
 	// TODO: Perform algorithm
 	// TODO: Print everything
 }

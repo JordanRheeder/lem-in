@@ -42,11 +42,27 @@ t_room *find_room(t_room **rooms, t_room *room)
   return (rooms[i]);
 }
 
-t_links *create_link_node()
+void print_map(	t_log *node_array)
 {
-  t_links * node;
+  int i;
 
-  node = (t_links *)malloc(sizeof(t_links));
-  node->next = NULL;
-  return (node);
+  i = 0;
+	while (node_array->rooms[i])
+	{
+		ft_putstr("Room: ");
+		ft_putstr(node_array->rooms[i]->name);
+		ft_putstr("; Links: ");
+		t_room *temp;
+		temp = node_array->rooms[i]->room_links->room;
+		while (temp)
+		{
+			ft_putstr(temp->name);
+			if (temp->next)
+				ft_putstr(", ");
+			temp = temp->next;
+		}
+			ft_putstr(";\n");
+		i++;
+	}
+  ft_putstr("\n");
 }
