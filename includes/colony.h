@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/13 13:39:55 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/13 14:05:24 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,37 @@
 		exit(2);                                       \
 	}
 #include "../libft/libft.h"
-#include "../includes/colony.h"
 #include <stdio.h>
 
 typedef char 		*t_str;
 
-typedef struct		s_room
-{
-	unsigned int	room_type : 2;
-	t_str			name;
-	unsigned int	x : 8;
-	unsigned int	y : 8;
-	unsigned int	visited;
-	struct s_room 	*next;
-	struct s_room 	**room_links;
-}					t_room;
-
 typedef struct		s_links
 {
-	char			*name;
-	struct s_rooms	*room;
-	struct s_links	*next;
-}					t_links;
+	struct	s_room	*room;
+	struct	s_links	*next;
+	struct	s_links	*prev;
+}									t_links;
 
-typedef struct 		s_log
+typedef struct		s_room
 {
-	unsigned int	ant_amnt;
-	unsigned int	start_index;
-	unsigned int	end_index;
-	unsigned int	room_count;
-	t_room			**rooms;
-	t_str			*links;
-}					t_log;
+	t_str						name;
+	unsigned int		room_type : 2;
+	unsigned int		x : 8;
+	unsigned int		y : 8;
+	unsigned int		visited;
+	struct	s_links	*room_links;
+	struct	s_room	*next;
+}									t_room;
+
+typedef struct		s_log
+{
+	int							ant_amnt;
+	int							start_index;
+	int							end_index;
+	int							room_count;
+	t_str						*links;
+	struct	s_room	**rooms;
+}									t_log;
 
 /*
 **	read_input functions
@@ -98,11 +97,13 @@ void	find_path(t_log *data);
 */
 t_room	*create_node(t_str line);
 t_log	*create_node_array(t_str *raw_data);
-t_log	**create_links(t_log *node_array, t_str *raw_data, int i);
+t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 
 /*
 **	helper functions
 */
-int		room_count(t_str *raw_data);
+t_links *create_link_node();
+int room_count(t_str *raw_data);
+t_room	*find_room(t_room **rooms, t_room *room);
 
 #endif
