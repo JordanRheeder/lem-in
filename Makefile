@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rengelbr <rengelbr@student.42.fr>          +#+  +:+       +#+         #
+#    By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 09:03:24 by rengelbr          #+#    #+#              #
-#    Updated: 2019/09/09 09:08:29 by rengelbr         ###   ########.fr        #
+#    Updated: 2020/05/09 11:22:35 by rengelbr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FLGS = -Wall -Werror -Wextra
 DBFLG = -Wall -Werror -Wextra -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -fsanitize=address -fno-omit-frame-pointer -g
 SRC = lem-in.c \
 	$(LIB) \
-	src/*.c
+	src/*.c \
+	algo.c
 
 all: $(MAKELIB) $(NAME)
 
@@ -25,7 +26,7 @@ $(MAKELIB):
 	@$(MAKE) $(MAKELIB)
 
 $(NAME):
-	gcc $(FLGS) $(SRC) libft/libft.a -o $(NAME)
+	gcc $(SRC) libft/libft.a -o $(NAME)
 
 db:
 	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)
@@ -37,6 +38,6 @@ fclean: clean
 	rm -f libft/libft.a
 	rm -fr $(NAME) $(NAME).dSYM
 
-re: all clean
+re: fclean all clean
 
 redb: clean db
