@@ -14,6 +14,7 @@
 #	define LEM_IN_H
 # define INTMIN -2147483648
 # define INTMAX 2147483648
+
 #define NAME_ERR                                  \
 	{                                               \
 		ft_putstr_fd("Error: Room names wrong\n", 2); \
@@ -46,7 +47,7 @@ typedef struct		s_links
 	struct	s_links	*prev;
 }									t_links;
 
-typedef struct		s_room
+typedef struct s_room
 {
 	t_str						name;
 	int							dead_end;
@@ -58,7 +59,7 @@ typedef struct		s_room
 	struct	s_room	*next;
 }									t_room;
 
-typedef struct		s_log
+typedef struct			s_links
 {
 	int							ant_amnt;
 	int							start_index;
@@ -71,11 +72,11 @@ typedef struct		s_log
 /*
 **	read_input functions
 */
-int		is_command(char *line);
-int		is_comment(char *line);
-int		is_room(char *line);
-int		is_link(char *line);
-t_str	*read_input(char *line);
+int is_command(char *line);
+int is_comment(char *line);
+int is_room(char *line);
+int is_link(char *line);
+t_str *read_input(char *line);
 
 /*
 **	validation functions
@@ -114,5 +115,4 @@ void free_map(t_log *node_array);
 **	algo functions
 */
 void algo(t_log *node_array);
-
 #endif
