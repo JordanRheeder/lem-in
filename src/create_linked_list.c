@@ -86,8 +86,6 @@ t_log *create_node_array(t_str *raw_data)
 			node_array->ant_amnt = ft_atoi(raw_data[i]);
 		else if (is_command(raw_data[i]))
 		{
-			while(1)
-			;
 			node_array->rooms[j] = create_node(raw_data[i + 1]);
 			if (ft_strequ("##start", raw_data[i]))
 			{
