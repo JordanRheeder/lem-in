@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/13 13:56:07 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 16:59:31 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ int main()
 	printf("storing input\n");
 	node_array = create_node_array(raw_data);
 	printf("input stored\n");
-	find_path(node_array);
+	// print_map(node_array);
+	// printf("%s\n",node_array->rooms[0]->room_links->next->room->name);
+	// while(node_array->rooms[0]->room_links){
+	// 	printf("node_array->rooms[0]->room_links->room->name == %s\n", node_array->rooms[0]->room_links->room->name);
+	// 	node_array->rooms[0]->room_links = node_array->rooms[0]->room_links->next;
+	// }
+	// find_path(node_array);
 	// TODO: Perform algorithm
 	// TODO: Print everything
 }

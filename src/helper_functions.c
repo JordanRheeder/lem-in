@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapulation.c                                       :+:      :+:    :+:   */
+/*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/10/03 11:21:02 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 16:27:54 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,20 @@ t_links *create_link_node()
   node = (t_links *)malloc(sizeof(t_links));
   node->next = NULL;
   return (node);
+}
+
+void print_map(t_log *node_array)
+{
+	t_room *temp_room;
+	t_links *temp_link;
+	for (int j = 0; node_array->rooms[j]->room_links->room; j++)
+	{
+		temp_room = node_array->rooms[j];
+		temp_link = temp_room->room_links;
+		while (temp_link != NULL ) {
+			printf("\t[%s]-> %s\n",temp_room->name, temp_link->room->name);
+			temp_link = temp_link->next;
+		}
+	}
+	ft_putstr("\n");
 }

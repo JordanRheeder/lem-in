@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 11:58:05 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/13 17:08:55 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 15:26:14 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 
 t_str find_least_visited(t_links *links)
 {
-	t_links **temp;
+	t_links *temp;
 	unsigned int min;
 	char *name;
 
-	temp = (t_links**)malloc(sizeof(t_links*));
-	*temp = links;
+	temp = (t_links*)malloc(sizeof(t_links));
+	temp = links;
 	min = 0;
-printf("find_least reached (*temp)->room->visited == %i\n", (*temp)->room->visited);
-	while ((*temp)->room->visited >= min && (*temp))
+printf("find_least reached temp->room->visited == %i\n", temp->room->visited);
+printf("find_least reached temp->room->name == %s\n", temp->room->name);
+	while (temp->next && temp->room->visited > min)
 	{
-		*temp = (*temp)->next;
+		printf("moving to next node");
+		temp = temp->next;
 	}
-	name = ft_strdup((*temp)->room->name);
+	name = ft_strdup(temp->room->name);
 	return (name);
 }
 
@@ -59,6 +61,7 @@ void	find_path(t_log *data)
 		else if (current_room->room_links != NULL)
 		{
 			least_visited = find_least_visited(current_room->room_links);
+			printf("least visited == %s\n", least_visited);
 			// while (!ft_strequ(current_room->room_links->room->name, least_visited))
 			// {
 			// 	current_room->room_links = current_room->room_links->next;

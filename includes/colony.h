@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/13 14:05:24 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 15:49:40 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 t_links *create_link_node();
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
+void print_map(t_log *node_array);
 
 #endif
