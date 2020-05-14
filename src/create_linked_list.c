@@ -43,9 +43,9 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
 			temp_link = (t_links*)malloc(sizeof(t_links));
-			while (ft_strequ(rooms[0], (char *)node_array->rooms[j]->name) != 1)
+			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
 				j++;
-			while (ft_strequ(rooms[1], (char *)node_array->rooms[k]->name) != 1)
+			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
 				k++;
 			if (!node_array->rooms[j]->room_links->room)
 			{

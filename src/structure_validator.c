@@ -7,7 +7,6 @@ int validate_file(t_str *data)
 	int end;
 	int phase;
 	int i;
-	char **split_str;
 
 	start = -1;
 	end = -1;
@@ -36,13 +35,12 @@ int validate_file(t_str *data)
 		}
 		else if (is_link(data[i]))
 		{
-			split_str = ft_strsplit(data[i], '-');
 			if (phase == 1)
 				phase = 2;
-			if (phase == 0 || start < 0 || end < 0 || ft_strequ(split_str[0], split_str[1]))
-				LINK_ERR;
-			ft_free_two_d_arr((void **)split_str);
+			if (phase == 0 || start < 0 || end < 0)
+				ORDER_ERR;
 		}
+		ft_putendl(data[i]);
 		i++;
 	}
 	return (1);
