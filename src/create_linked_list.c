@@ -20,7 +20,7 @@ t_room *create_node(t_str line)
 	room_data = ft_strsplit(line, ' ');
 	node = (t_room *)malloc(sizeof(t_room));
 
-	node->name = (t_str)malloc(ft_strlen(room_data[0]) * sizeof(char));
+	node->name = (t_str)malloc(ft_strlen(room_data[0]) * sizeof(char) + 1);
 	node->name = room_data[0];
 	node->x = atoi(room_data[1]);
 	node->y = atoi(room_data[2]);
@@ -34,8 +34,8 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	t_links *temp;
-
+	// t_links *temp;
+	t_links *temp_link;
 	while (raw_data[i])
 	{
 		if (is_link(raw_data[i]))
@@ -43,18 +43,23 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			j = 0;
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
-			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
+			temp_link = (t_links*)malloc(sizeof(t_links));
+			while (ft_strequ(rooms[0], (char *)node_array->rooms[j]->name) != 1)
 				j++;
-			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
+			while (ft_strequ(rooms[1], (char *)node_array->rooms[k]->name) != 1)
 				k++;
-			if (!node_array->rooms[j]->room_links->room && node_array->rooms[j]->room_type != 1)
-				node_array->rooms[j]->room_links->room = node_array->rooms[k];
+			if (!node_array->rooms[j]->room_links->room)
+			{
+				temp_link->room = node_array->rooms[k];
+				temp_link->next = NULL;
+				node_array->rooms[j]->room_links = temp_link;
+			}
 			else if (node_array->rooms[j]->room_type != 1)
 			{
-				temp = node_array->rooms[j]->room_links;
-				while (temp->next)
-					temp = temp->next;
-				temp->next = node_array->rooms[k];
+				temp_link->room = node_array->rooms[k];
+				temp_link->next = node_array->rooms[j]->room_links;
+				free(node_array->rooms[j]->room_links);
+				node_array->rooms[j]->room_links = temp_link;
 			}
 		}
 		i++;
@@ -75,6 +80,7 @@ t_log *create_node_array(t_str *raw_data)
 	node_array = (t_log *)malloc(sizeof(t_log));
 	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data));
 	//
+	node_array->room_count = room_count(raw_data);
 	while (!(is_link(raw_data[i])))
 	{
 		if (ft_only_digits(raw_data[i]))
@@ -92,14 +98,13 @@ t_log *create_node_array(t_str *raw_data)
 				node_array->end_index = j;
 				node_array->rooms[j]->room_type = 1;
 			}
-			else
-				node_array->rooms[j]->room_type = 2;
 			i++;
 			j++;
 		}
 		else if (is_room(raw_data[i]))
 		{
 			node_array->rooms[j] = create_node(raw_data[i]);
+			node_array->room_count++;
 			j++;
 		}
 		i++;

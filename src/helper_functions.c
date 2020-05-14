@@ -45,14 +45,14 @@ t_room *find_room(t_room **rooms, t_room *room)
 void print_map(t_log *node_array)
 {
 	int i;
+	t_room *temp;
 
 	i = 0;
-	while (node_array->rooms[i]->name)
+	while (node_array->rooms[i]->room_type != 1)
 	{
 		ft_putstr("Room: ");
 		ft_putstr(node_array->rooms[i]->name);
 		ft_putstr("; Links: ");
-		t_room *temp;
 		temp = node_array->rooms[i]->room_links->room;
 		while (temp)
 		{
