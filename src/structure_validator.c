@@ -41,6 +41,7 @@ int validate_file(t_str *data)
 				phase = 2;
 			if (phase == 0 || start < 0 || end < 0 || ft_strequ(split_str[0], split_str[1]))
 				LINK_ERR;
+			ft_free_two_d_arr((void **)split_str);
 		}
 		i++;
 	}

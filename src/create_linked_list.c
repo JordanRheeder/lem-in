@@ -34,7 +34,6 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	// t_links *temp;
 	t_links *temp_link;
 	while (raw_data[i])
 	{
@@ -58,13 +57,12 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			{
 				temp_link->room = node_array->rooms[k];
 				temp_link->next = node_array->rooms[j]->room_links;
-				free(node_array->rooms[j]->room_links);
 				node_array->rooms[j]->room_links = temp_link;
 			}
+			ft_free_two_d_arr((void **)rooms);
 		}
 		i++;
 	}
-	free(rooms);
 	return (node_array);
 }
 
@@ -109,7 +107,7 @@ t_log *create_node_array(t_str *raw_data)
 		}
 		i++;
 	}
-	create_links(node_array, raw_data, i);
-	free(raw_data);
+	node_array = create_links(node_array, raw_data, i);
+	ft_free_two_d_arr((void **)raw_data);
 	return (node_array);
 }

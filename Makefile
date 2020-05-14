@@ -26,7 +26,7 @@ $(MAKELIB):
 	@$(MAKE) $(MAKELIB)
 
 $(NAME):
-	gcc $(FLGS) $(SRC) libft/libft.a -o $(NAME)
+	gcc $(SRC) libft/libft.a -o $(NAME)
 
 db:
 	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)

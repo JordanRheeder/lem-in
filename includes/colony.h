@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-#define LEM_IN_H
+#ifndef LEM_IN_H	
+#	define LEM_IN_H
+# define INTMIN -2147483648
+# define INTMAX 2147483648
 #define NAME_ERR                                  \
 	{                                               \
 		ft_putstr_fd("Error: Room names wrong\n", 2); \
@@ -104,7 +106,8 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i);
 */
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
-void print_map(	t_log *node_array);
+void print_map(t_log *node_array);
+void free_map(t_log *node_array);
 
 /*
 **	algo functions
