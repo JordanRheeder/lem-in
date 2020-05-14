@@ -48,11 +48,11 @@ t_links	*find_least_visited(t_links	*room_links)
   t_links *ret_link;
 
   current_link = room_links;
-  ret_link = NULL;
-  if (current_link->next)
+  ret_link = current_link;
+  if (current_link->room->room_links->next)
   {
+    ft_putstr("Found a next!\n");
     next_link = current_link->next;
-    ft_putstr(current_link->next->room->name);
     while (next_link)
     {
       ft_putstr("\n====\n");
@@ -67,31 +67,33 @@ t_links	*find_least_visited(t_links	*room_links)
         return (ret_link);
     }
   }
-  else if (!current_link->next)
-  {
-    ft_putstr("\n====\nElse: ");
-    ft_putstr(current_link->room->name);
-    ft_putstr("\n====\n");
-    return (current_link);
-  }
-  return (NULL);
+  return (current_link);
 }
 
 void algo(t_log *node_array)
 {
   t_room *current_room;
+		write(1, "qwer\n", 5);
 
   current_room = node_array->rooms[node_array->start_index];
-  while (current_room->room_links->room->name)
+  ft_putnbr(node_array->start_index);
+  while (current_room->room_type != 1)
   {
     current_room->visited++;
-    ft_putstr("\n\n");
+    ft_putstr("\n");
 
     ft_putstr("Name: ");
-    ft_putstr(current_room->room_links->room->name);
+    ft_putstr(current_room->name);
     ft_putstr("; Type: ");
-    ft_putnbr(current_room->room_links->room->room_type);
+    ft_putnbr(current_room->room_type);
 
     current_room = find_least_visited(current_room->room_links)->room;
   }
+  current_room->visited++;
+  ft_putstr("\n");
+
+  ft_putstr("Name: ");
+  ft_putstr(current_room->name);
+  ft_putstr("; Type: ");
+  ft_putnbr(current_room->room_type);
 }

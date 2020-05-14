@@ -34,7 +34,7 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	t_room *temp;
+	t_links *temp;
 
 	while (raw_data[i])
 	{
@@ -48,13 +48,10 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
 				k++;
 			if (!node_array->rooms[j]->room_links->room && node_array->rooms[j]->room_type != 1)
-			{
 				node_array->rooms[j]->room_links->room = node_array->rooms[k];
-				// node_array->rooms[j]->room_links->prev = node_array->rooms[j];
-			}
 			else if (node_array->rooms[j]->room_type != 1)
 			{
-				temp = node_array->rooms[j]->room_links->room;
+				temp = node_array->rooms[j]->room_links;
 				while (temp->next)
 					temp = temp->next;
 				temp->next = node_array->rooms[k];

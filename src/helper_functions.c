@@ -14,40 +14,40 @@
 
 int room_count(t_str *raw_data)
 {
-  int i;
-  int j;
+	int i;
+	int j;
 
-  i = 0;
-  j = 0;
-  while (raw_data[i])
-  {
-    if (is_room(raw_data[i]))
-      j++;
-    i++;
-  }
-  return (j);
+	i = 0;
+	j = 0;
+	while (raw_data[i])
+	{
+		if (is_room(raw_data[i]))
+			j++;
+		i++;
+	}
+	return (j);
 }
 
 t_room *find_room(t_room **rooms, t_room *room)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (rooms[i])
-  {
-    if (ft_strequ(rooms[i]->name, room->name))
-      return (rooms[i]);
-    i++;
-  }
-  return (rooms[i]);
+	i = 0;
+	while (rooms[i])
+	{
+		if (ft_strequ(rooms[i]->name, room->name))
+			return (rooms[i]);
+		i++;
+	}
+	return (rooms[i]);
 }
 
-void print_map(	t_log *node_array)
+void print_map(t_log *node_array)
 {
-  int i;
+	int i;
 
-  i = 0;
-	while (node_array->rooms[i])
+	i = 0;
+	while (node_array->rooms[i]->name)
 	{
 		ft_putstr("Room: ");
 		ft_putstr(node_array->rooms[i]->name);
@@ -61,8 +61,8 @@ void print_map(	t_log *node_array)
 				ft_putstr(", ");
 			temp = temp->next;
 		}
-			ft_putstr(";\n");
+		ft_putstr(";\n");
 		i++;
 	}
-  ft_putstr("\n");
+	ft_putstr("\n");
 }
