@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/13 13:52:57 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 17:03:44 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ int		is_link(char *line)
 	char *str;
 
 	str = line;
-	while (*str)
-	{
-		if (*str == '-')
-			return (1);
-		str++;
-	}
+	if (ft_strchr(str, '-') )
+		return (1);
 	return (0);
 }

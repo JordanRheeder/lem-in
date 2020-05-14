@@ -17,7 +17,8 @@ FLGS = -Wall -Werror -Wextra
 DBFLG = -Wall -Werror -Wextra -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -fsanitize=address -fno-omit-frame-pointer -g
 SRC = lem-in.c \
 	$(LIB) \
-	src/*.c
+	src/*.c \
+	algo.c
 
 all: $(MAKELIB) $(NAME)
 
@@ -25,7 +26,7 @@ $(MAKELIB):
 	@$(MAKE) $(MAKELIB)
 
 $(NAME):
-	gcc $(FLGS) $(SRC) libft/libft.a -o $(NAME)
+	gcc $(SRC) libft/libft.a -o $(NAME)
 
 db:
 	gcc $(DBFLG) $(SRC) libft/libft.a -o $(NAME)

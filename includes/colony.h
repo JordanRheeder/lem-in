@@ -6,12 +6,14 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/14 15:49:40 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 17:06:44 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
-#define LEM_IN_H
+#	define LEM_IN_H
+# define INTMIN -2147483648
+# define INTMAX 2147483648
 #define NAME_ERR                                  \
 	{                                               \
 		ft_putstr_fd("Error: Room names wrong\n", 2); \
@@ -47,10 +49,11 @@ typedef struct		s_links
 typedef struct		s_room
 {
 	t_str						name;
-	unsigned int		room_type : 2;
+	int							dead_end;
+	int							visited;
+	unsigned int		room_type;
 	unsigned int		x : 8;
 	unsigned int		y : 8;
-	unsigned int		visited;
 	struct	s_links	*room_links;
 	struct	s_room	*next;
 }									t_room;
@@ -102,9 +105,14 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 /*
 **	helper functions
 */
-t_links *create_link_node();
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
 void print_map(t_log *node_array);
+void free_map(t_log *node_array);
+
+/*
+**	algo functions
+*/
+void algo(t_log *node_array);
 
 #endif
