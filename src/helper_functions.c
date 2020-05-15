@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapulation.c                                       :+:      :+:    :+:   */
+/*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2019/10/03 11:21:02 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/14 17:08:55 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,35 +63,3 @@ void print_map(t_log *node_array)
 	}
 	ft_putstr("\n");
 }
-
-
-// typedef struct		s_links
-// {
-// 	struct	s_room	*room;
-// 	struct	s_links	*next;
-// 	struct	s_links	*prev;
-// }									t_links;
-
-// typedef struct		s_room
-// {
-// 	t_str						name;
-// 	struct	s_links	*room_links;
-// 	struct	s_room	*next;
-// }									t_room;
-
-// typedef struct		s_log
-// {
-// 	t_str						*links;
-// 	struct	s_room	**rooms;
-// }									t_log;
-// void free_map(t_log *node_array)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	free(node_array->links);
-// 	while (node_array->rooms[i])
-// 	{
-
-// 	}
-// }
