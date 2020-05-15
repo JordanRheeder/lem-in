@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/14 17:06:44 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/15 16:15:45 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_room
 	struct	s_room	*next;
 }									t_room;
 
-typedef struct			s_links
+typedef struct			s_log
 {
 	int							ant_amnt;
 	int							start_index;
@@ -109,10 +109,13 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
 void print_map(t_log *node_array);
-void free_map(t_log *node_array);
+t_str find_least_visited2(t_links *links);
+t_links	*find_least_visited(t_links	*room_links);
+// void free_map(t_log *node_array);
 
 /*
 **	algo functions
 */
 void algo(t_log *node_array);
+void	find_path(t_log *data);
 #endif
