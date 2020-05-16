@@ -29,6 +29,7 @@ int main()
 	printf("====================\nStarting Algorithm\n");
 	algo(node_array);
 	printf("Algorithm Finished\n====================\n");
+	// free_map(node_array);
 	// TODO: Perform algorithm
 	// TODO: Print everything
 }

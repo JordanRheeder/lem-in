@@ -109,6 +109,7 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 int room_count(t_str *raw_data);
 t_room	*find_room(t_room **rooms, t_room *room);
 void print_map(t_log *node_array);
+void free_map(t_log *node_array);
 
 /*
 **	algo functions

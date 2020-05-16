@@ -1,8 +1,7 @@
 #test
 10
 ##start
-1 1 1   room1->room_links = 3
-        room3->next = 2
+1 1 1
 2 2 2
 #co
 #to

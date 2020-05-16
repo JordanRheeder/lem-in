@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/14 17:06:21 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/15 17:30:50 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ t_room *create_node(t_str line)
 {
 	t_room *node;
 	char **room_data;
-
 	room_data = ft_strsplit(line, ' ');
 	node = (t_room *)malloc(sizeof(t_room));
-
 	node->name = (t_str)malloc(ft_strlen(room_data[0]) * sizeof(char) + 1);
 	node->name = room_data[0];
 	node->x = atoi(room_data[1]);
@@ -35,7 +33,6 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int k;
 	char **rooms;
 	t_links *temp_link;
-
 	while (raw_data[i])
 	{
 		if (is_link(raw_data[i]))
@@ -46,26 +43,22 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			temp_link = (t_links*)malloc(sizeof(t_links));
 			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
 				j++;
-			while (ft_strequ(rooms[1], node_array->rooms[k]->name) != 1)
+			while (ft_strequ(rooms[1], (char *)node_array->rooms[k]->name) != 1)
 				k++;
-			// if no links exists yet
 			if (!node_array->rooms[j]->room_links->room)
 			{
-				// create link
 				temp_link->room = node_array->rooms[k];
 				temp_link->next = NULL;
 				node_array->rooms[j]->room_links = temp_link;
 			}
-			// if other links exists
 			else if (node_array->rooms[j]->room_type != 1)
 			{
-				// create link
 				temp_link->room = node_array->rooms[k];
 				temp_link->next = node_array->rooms[j]->room_links;
 				node_array->rooms[j]->room_links = temp_link;
 			}
-			ft_free_two_d_arr((void **)rooms);
 		}
+		ft_free_two_d_arr((void **)rooms);
 		i++;
 	}
 	return (node_array);
@@ -76,13 +69,11 @@ t_log *create_node_array(t_str *raw_data)
 	int i;
 	int j;
 	t_log *node_array;
-
 	i = 0;
 	j = 0;
 	// check for leaks
 	node_array = (t_log *)malloc(sizeof(t_log));
 	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data));
-	//
 	node_array->room_count = room_count(raw_data);
 	while (!(is_link(raw_data[i])))
 	{
@@ -107,7 +98,6 @@ t_log *create_node_array(t_str *raw_data)
 		else if (is_room(raw_data[i]))
 		{
 			node_array->rooms[j] = create_node(raw_data[i]);
-			node_array->room_count++;
 			j++;
 		}
 		i++;

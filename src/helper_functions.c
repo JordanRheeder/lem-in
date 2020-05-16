@@ -63,3 +63,15 @@ void print_map(t_log *node_array)
 	}
 	ft_putstr("\n");
 }
+
+// void free_map(t_log *node_array)
+// {
+// 	int i;
+
+// 	while (node_array->rooms[i])
+// 	{
+// 		free(node_array->rooms[i]->name);
+// 		free(node_array->rooms[i]);
+// 	}
+// 	free(node_array);
+// }
