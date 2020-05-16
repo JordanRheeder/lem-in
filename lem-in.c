@@ -19,17 +19,16 @@ int main()
 	t_log *node_array;
 
 	line = NULL;
-	printf("Reading Input\n");
+	// printf("Reading Input\n");
 	raw_data = read_input(line);
-	printf("Validating Input\n");
+	// printf("Validating Input\n");
 	validate_file(raw_data);
-	printf("Storing Input\n");
+	// printf("Storing Input\n");
 	node_array = create_node_array(raw_data);
 	// print_map(node_array);
-	printf("====================\nStarting Algorithm\n");
+	// printf("====================\nStarting Algorithm\n");
 	// algo(node_array);
-
-	printf("Algorithm Finished\n====================\n");
+	// printf("Algorithm Finished\n====================\n");
 	// free_map(node_array);
 	// TODO: Perform algorithm
 	// TODO: Print everything
