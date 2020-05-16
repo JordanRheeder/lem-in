@@ -55,12 +55,13 @@ void print_map(t_log *node_array)
 		ft_putstr(temp_room->name);
 		ft_putstr("] -> ");
 		temp_link = temp_room->room_links;
-		while (temp_link) {
+		while (temp_link)
+		{
 			ft_putstr(temp_link->room->name);
 			ft_putstr(" ");
 			temp_link = temp_link->next;
 		}
-			ft_putstr("\n");
+		ft_putstr("\n");
 	}
 	ft_putstr("\n");
 }
@@ -82,6 +83,8 @@ void free_map(t_log *node_array)
 void free_room(t_room *room)
 {
 	free(room->name);
-	free(room->next);
-	free(room->room_links);
+	if (room->next)
+		free(room->next);
+	if (room->room_links)
+		free(room->room_links);
 }
