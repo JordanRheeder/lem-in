@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/14 17:02:12 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/15 19:18:06 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int main()
 	node_array = create_node_array(raw_data);
 	// print_map(node_array);
 	printf("====================\nStarting Algorithm\n");
-	algo(node_array);
+	// algo(node_array);
+
 	printf("Algorithm Finished\n====================\n");
 	// free_map(node_array);
 	// TODO: Perform algorithm

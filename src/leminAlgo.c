@@ -1,14 +1,14 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   leminAlgo.c                                        :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2020/05/09 11:58:05 by rengelbr          #+#    #+#             */
-// /*   Updated: 2020/05/14 15:26:14 by rengelbr         ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   leminAlgo.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/09 11:58:05 by rengelbr          #+#    #+#             */
+/*   Updated: 2020/05/15 17:04:41 by rengelbr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 // #include "../includes/colony.h"
 // #include <stdio.h>
@@ -16,7 +16,7 @@
 // t_str find_least_visited2(t_links *links)
 // {
 // 	t_links *temp;
-// 	unsigned int min;
+// 	int min;
 // 	char *name;
 
 // 	temp = (t_links*)malloc(sizeof(t_links));
@@ -60,7 +60,7 @@
 // 			break;
 // 		else if (current_room->room_links != NULL)
 // 		{
-// 			least_visited = find_least_visited(current_room->room_links);
+// 			least_visited = find_least_visited2(current_room->room_links);
 // 			printf("least visited == %s\n", least_visited);
 // 			// while (!ft_strequ(current_room->room_links->room->name, least_visited))
 // 			// {
