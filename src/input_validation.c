@@ -54,7 +54,7 @@ int		is_link(char *line)
 	char *str;
 
 	str = line;
-	if (ft_strchr(str, '-') )
+	if (ft_strchr(str, '-') && str[0] != '#')
 		return (1);
 	return (0);
 }

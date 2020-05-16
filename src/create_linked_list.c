@@ -21,9 +21,9 @@ t_room *create_node(t_str line)
 	node->name = ft_strdup(room_data[0]);
 	node->x = atoi(room_data[1]);
 	node->y = atoi(room_data[2]);
-	ft_free_two_d_arr((void **)room_data);
 	node->room_links = (t_links *)malloc(sizeof(t_links));
 	node->room_type = 2;
+	ft_free_two_d_arr((void *)room_data);
 	return (node);
 }
 
@@ -41,9 +41,9 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
 			temp_link = (t_links*)malloc(sizeof(t_links));
-			while (ft_strequ(rooms[0], node_array->rooms[j]->name) != 1)
+			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
-			while (ft_strequ(rooms[1], node_array->rooms[k]->name))
+			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
 				k++;
 			if (!node_array->rooms[j]->room_links->room)
 			{
@@ -51,14 +51,14 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				temp_link->next = NULL;
 				node_array->rooms[j]->room_links = temp_link;
 			}
-			else if (node_array->rooms[j]->room_type != 1)
+			else if (!node_array->rooms[j]->room_type)
 			{
 				temp_link->room = node_array->rooms[k];
 				temp_link->next = node_array->rooms[j]->room_links;
 				node_array->rooms[j]->room_links = temp_link;
 			}
+			ft_free_two_d_arr((void **)rooms);
 		}
-		ft_free_two_d_arr((void **)rooms);
 		i++;
 	}
 	return (node_array);

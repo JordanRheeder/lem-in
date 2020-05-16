@@ -12,7 +12,7 @@
 
 #include "includes/colony.h"
 
-t_links	*find_least_visited(t_links	*room_links)
+t_links *find_least_visited(t_links *room_links)
 {
 	t_links *current_link;
 	t_links *next_link;
@@ -20,18 +20,13 @@ t_links	*find_least_visited(t_links	*room_links)
 
 	current_link = room_links;
 	ret_link = current_link;
-	if (current_link->room->room_links->next)
+	if (current_link && current_link->next)
 	{
-		ft_putstr("Found a next!\n");
 		next_link = current_link->next;
 		while (next_link)
 		{
-			ft_putstr("\n====\n");
-			ft_putstr(next_link->room->name);
-			ft_putstr("\n====\n");
-			if (current_link->room->visited < next_link->room->visited)
-				ret_link = current_link;
-			current_link = current_link->next;
+			if (ret_link->room->visited > next_link->room->visited)
+				ret_link = next_link;
 			if (next_link->next)
 				next_link = next_link->next;
 			else
@@ -49,20 +44,35 @@ void algo(t_log *node_array)
 	ft_putstr("\nStart Index: ");
 	ft_putnbr(node_array->start_index);
 	ft_putstr("\n");
-	while (current_room->room_type != 1)
+
+	ft_putstr("\nName: ");
+	ft_putstr(current_room->name);
+	ft_putstr("; Type: ");
+	ft_putnbr(current_room->room_type);
+	ft_putstr("\n");	
+	while (current_room->room_type != 1 && current_room->room_links->room)
 	{
 		current_room->visited++;
-		ft_putstr("\n");
 
-		ft_putstr("Name: ");
+		ft_putstr("\nName: ");
 		ft_putstr(current_room->name);
 		ft_putstr("; Type: ");
 		ft_putnbr(current_room->room_type);
+		ft_putstr("\n");
 
 		current_room = find_least_visited(current_room->room_links)->room;
+
+		if (!current_room->room_links->room)
+		{
+			ft_putstr("\nName: ");
+			ft_putstr(current_room->name);
+			ft_putstr("; Type: ");
+			ft_putnbr(current_room->room_type);
+			ft_putstr("\n");
+			current_room = node_array->rooms[node_array->start_index];
+		}
 	}
 	ft_putstr("\n");
-
 	ft_putstr("Name: ");
 	ft_putstr(current_room->name);
 	ft_putstr("; Type: ");

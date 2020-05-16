@@ -51,27 +51,31 @@ void print_map(t_log *node_array)
 	for (int j = 0; node_array->rooms[j]->room_links->room; j++)
 	{
 		temp_room = node_array->rooms[j];
+		ft_putstr("\t[");
+		ft_putstr(temp_room->name);
+		ft_putstr("] -> ");
 		temp_link = temp_room->room_links;
-		while (temp_link != NULL ) {
-			ft_putstr("\t[");
-			ft_putstr(temp_room->name);
-			ft_putstr("] -> ");
+		while (temp_link) {
 			ft_putstr(temp_link->room->name);
-			ft_putstr("\n");
+			ft_putstr(" ");
 			temp_link = temp_link->next;
 		}
+			ft_putstr("\n");
 	}
 	ft_putstr("\n");
 }
 
-// void free_map(t_log *node_array)
-// {
-// 	int i;
+void free_map(t_log *node_array)
+{
+	int i;
 
-// 	while (node_array->rooms[i])
-// 	{
-// 		free(node_array->rooms[i]->name);
-// 		free(node_array->rooms[i]);
-// 	}
-// 	free(node_array);
-// }
+	ft_putstr("HERE");
+	while (node_array->rooms[i])
+	{
+		ft_putstr("In Loop");
+		free(node_array->rooms[i]->name);
+		free(node_array->rooms[i]);
+	}
+	ft_putstr("Exit Loop");
+	free(node_array);
+}
