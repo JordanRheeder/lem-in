@@ -23,6 +23,7 @@ t_room *create_node(t_str line)
 	node->y = atoi(room_data[2]);
 	node->room_links = (t_links *)malloc(sizeof(t_links));
 	node->room_type = 2;
+	node->dead_end = 0;
 	ft_free_two_d_arr((void *)room_data);
 	return (node);
 }

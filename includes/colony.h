@@ -112,6 +112,7 @@ void print_map(t_log *node_array);
 t_str find_least_visited2(t_links *links);
 t_links	*find_least_visited(t_links	*room_links);
 void free_map(t_log *node_array);
+void free_room(t_room *room);
 
 /*
 **	algo functions

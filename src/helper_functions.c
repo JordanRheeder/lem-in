@@ -73,9 +73,15 @@ void free_map(t_log *node_array)
 	while (node_array->rooms[i])
 	{
 		ft_putstr("In Loop");
-		free(node_array->rooms[i]->name);
-		free(node_array->rooms[i]);
+		free_room(node_array->rooms[i]);
 	}
 	ft_putstr("Exit Loop");
 	free(node_array);
+}
+
+void free_room(t_room *room)
+{
+	free(room->name);
+	free(room->next);
+	free(room->room_links);
 }
