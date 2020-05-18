@@ -72,15 +72,15 @@ t_log *create_node_array(t_str *raw_data)
 	t_log *node_array;
 	i = 0;
 	j = 0;
-	// check for leaks
+
 	node_array = (t_log *)malloc(sizeof(t_log));
-	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data));
+	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data) + 1);
 	node_array->room_count = room_count(raw_data);
 	while (!(is_link(raw_data[i])))
 	{
 		if (ft_only_digits(raw_data[i]))
 			node_array->ant_amnt = ft_atoi(raw_data[i]);
-		else if (is_command(raw_data[i]))
+		else if (is_command(raw_data[i]) && is_room(raw_data[i + 1]))
 		{
 			node_array->rooms[j] = create_node(raw_data[i + 1]);
 			if (ft_strequ("##start", raw_data[i]))
@@ -103,6 +103,8 @@ t_log *create_node_array(t_str *raw_data)
 		}
 		i++;
 	}
+	// leaks
+	node_array->rooms[j] = NULL;
 	create_links(node_array, raw_data, i);
 	ft_free_two_d_arr((void **)raw_data);
 	return (node_array);

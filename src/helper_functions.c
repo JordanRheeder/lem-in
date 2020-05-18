@@ -48,35 +48,40 @@ void print_map(t_log *node_array)
 	t_links *temp_link;
 
 	ft_putstr("All Links: \n");
-	for (int j = 0; node_array->rooms[j]->room_links->room; j++)
+
+	for (int j = 0; node_array->rooms[j]; j++)
 	{
 		temp_room = node_array->rooms[j];
 		ft_putstr("\t[");
+		ft_putnbr(j);
+		ft_putstr(": ");
 		ft_putstr(temp_room->name);
 		ft_putstr("] -> ");
-		temp_link = temp_room->room_links;
-		while (temp_link)
+		if (temp_room->room_links->room)
 		{
-			ft_putstr(temp_link->room->name);
-			ft_putstr(" ");
-			temp_link = temp_link->next;
+			temp_link = temp_room->room_links;
+			while (temp_link)
+			{
+				ft_putstr(temp_link->room->name);
+				ft_putstr(" ");
+				temp_link = temp_link->next;
+			}
 		}
+		else
+		ft_putstr("NULL");
 		ft_putstr("\n");
 	}
-	ft_putstr("\n");
 }
 
 void free_map(t_log *node_array)
 {
 	int i;
 
-	ft_putstr("HERE");
 	while (node_array->rooms[i])
 	{
-		ft_putstr("In Loop");
 		free_room(node_array->rooms[i]);
 	}
-	ft_putstr("Exit Loop");
+	// Leaks here
 	free(node_array);
 }
 
