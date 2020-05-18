@@ -46,10 +46,12 @@ void print_map(t_log *node_array)
 {
 	t_room *temp_room;
 	t_links *temp_link;
+    int j;
 
+	j = 0;
 	ft_putstr("All Links: \n");
 
-	for (int j = 0; node_array->rooms[j]; j++)
+	while(node_array->rooms[j]->room_links->room)
 	{
 		temp_room = node_array->rooms[j];
 		ft_putstr("\t[");
@@ -70,6 +72,7 @@ void print_map(t_log *node_array)
 		else
 		ft_putstr("NULL");
 		ft_putstr("\n");
+		j++;
 	}
 }
 
