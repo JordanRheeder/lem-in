@@ -18,7 +18,7 @@ DBFLG = -Wall -Werror -Wextra -Wno-unused-but-set-variable -Wno-unused-parameter
 SRC = lem-in.c \
 	$(LIB) \
 	src/*.c \
-	algo.c
+	src/algo.c
 
 all: $(MAKELIB) $(NAME)
 
