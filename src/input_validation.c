@@ -38,15 +38,13 @@ int		is_room(char *line)
 	{
 		split_room = ft_strsplit(line, ' ');
 		if (ft_only_digits(split_room[1]) && ft_only_digits(split_room[2])
-			 && !ft_strncmp("L", split_room[0], 1) && !ft_strncmp("l", split_room[0], 1))
+			 && ft_strncmp("L", split_room[0], 1) && ft_strncmp("l", split_room[0], 1))
 		{
 			ft_free_two_d_arr((void**)split_room);
 			return (1);
 		}
 		else
-		{
 			NAME_ERR;
-		}
 		ft_free_two_d_arr((void**)split_room);
 	}
 	return (0);
