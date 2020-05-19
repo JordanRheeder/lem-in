@@ -57,7 +57,6 @@ void algo(t_log *node_array)
 		previous_room = current_room;
 		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
-
 		ft_putstr("Name: ");
 		ft_putstr(current_room->name);
 		ft_putstr("; Type: ");

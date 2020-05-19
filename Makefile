@@ -14,7 +14,7 @@ NAME = lem-in
 MAKELIB = -C libft
 LIB = libft/libft.a
 FLGS = -Wall -Werror -Wextra
-DBFLG = -Wall -Werror -Wextra -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -fsanitize=address -fno-omit-frame-pointer -g
+DBFLG = -Wall -Werror -Wextra -fsanitize=address -fno-omit-frame-pointer -ggdb3
 SRC = lem-in.c \
 	$(LIB) \
 	src/*.c \
