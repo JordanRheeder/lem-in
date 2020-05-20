@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/15 16:15:45 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/20 10:26:35 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ int		check_name_XY(t_log *data);
 int		check_links(t_log *data);
 void	validate(t_log *data);
 int		validate_file(t_str *data); //new
+int		validate_room_name(char *line);
+int		validate_links(t_log *data, char **input_data, int links_index);
+
 /*
 **	pathfinder functions
 */
@@ -107,7 +110,7 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 **	helper functions
 */
 int room_count(t_str *raw_data);
-t_room	*find_room(t_room **rooms, t_room *room);
+t_room *find_room(t_log *data, t_str room_name);
 void print_map(t_log *node_array);
 t_str find_least_visited2(t_links *links);
 t_links	*find_least_visited(t_links	*room_links);
