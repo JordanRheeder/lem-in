@@ -42,7 +42,6 @@ int validate_file(t_str *data)
 			if (phase == 0 || start < 0 || end < 0)
 				ORDER_ERR;
 		}
-		ft_putendl(data[i]);
 		i++;
 	}
 	return (1);

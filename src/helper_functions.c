@@ -63,3 +63,23 @@ void print_map(t_log *node_array)
 	}
 	ft_putstr("\n");
 }
+
+void free_map(t_log *node_array)
+{
+	int i;
+
+	while (node_array->rooms[i])
+	{
+		free_room(node_array->rooms[i]);
+	}
+	free(node_array);
+}
+
+void free_room(t_room *room)
+{
+	free(room->name);
+	if (room->next)
+		free(room->next);
+	if (room->room_links)
+		free(room->room_links);
+}

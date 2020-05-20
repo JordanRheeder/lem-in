@@ -1,6 +1,5 @@
 #!/bin/sh
-make clean
-make re
+
 if  [[ $1 = "-a" ]]; then
     echo "All maps being tested"
     sleep 0

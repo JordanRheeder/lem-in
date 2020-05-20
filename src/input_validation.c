@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/20 13:13:38 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/20 13:29:41 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int		is_comment(char *line)
 int		is_room(char *line)
 {
 	char** split_room;
+
+	ft_putstr(line);
+	ft_putstr("\n");
 	if (ft_wordcount(line, ' ') == 3)
 	{
 		split_room = ft_strsplit(line, ' ');

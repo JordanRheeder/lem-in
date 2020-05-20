@@ -112,13 +112,14 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 int room_count(t_str *raw_data);
 t_room *find_room(t_log *data, t_str room_name);
 void print_map(t_log *node_array);
-t_str find_least_visited2(t_links *links);
-t_links	*find_least_visited(t_links	*room_links);
-// void free_map(t_log *node_array);
+void free_room(t_room *room);
+void free_map(t_log *node_array);
 
 /*
 **	algo functions
 */
 void algo(t_log *node_array);
 void	find_path(t_log *data);
+t_links	*find_least_visited(t_links	*room_links);
+
 #endif

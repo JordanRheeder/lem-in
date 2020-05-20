@@ -24,6 +24,7 @@ t_room *create_node(t_str line)
 	node->y = ft_atoi(room_data[2]);
 	node->room_links = NULL;
 	node->room_type = 2;
+	node->dead_end = 0;
 	ft_free_two_d_arr((void **)room_data);
 	return (node);
 }
@@ -47,7 +48,7 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
 				k++;
-			if (j == node_array->end_index)
+			if (j == node_array->end_index || k == node_array->start_index)
 			{
 				j = j ^ k;
 				k = j ^ k;
@@ -80,7 +81,6 @@ t_log *create_node_array(t_str *raw_data)
 
 	i = 0;
 	j = 0;
-	// check for leaks
 	node_array = (t_log *)malloc(sizeof(t_log));
 	node_array->rooms = (t_room **)malloc(sizeof(t_room *) * room_count(raw_data));
 	node_array->room_count = room_count(raw_data);
