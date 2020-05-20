@@ -28,6 +28,8 @@ int validate_file(t_str *data)
 		{
 			if (phase != 1)
 				ORDER_ERR;
+			if (!validate_room_name(data[i]))
+				NAME_ERR;
 			if (start == 1)
 				start = 0;
 			else if (end == 1)
