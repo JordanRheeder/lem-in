@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/18 16:19:36 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/20 09:50:16 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ int room_count(t_str *raw_data)
 	return (j);
 }
 
-t_room *find_room(t_room **rooms, t_room *room)
+t_room *find_room(t_log *data, t_str room_name)
 {
 	int i;
 
 	i = 0;
-	while (rooms[i])
+	while (i < data->room_count)
 	{
-		if (ft_strequ(rooms[i]->name, room->name))
-			return (rooms[i]);
+		if (ft_strequ(data->rooms[i]->name, room_name))
+			return (data->rooms[i]);
 		i++;
 	}
-	return (rooms[i]);
+	return NULL;
 }
 
 void print_map(t_log *node_array)
