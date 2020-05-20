@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 11:03:12 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/20 09:49:32 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/20 13:07:14 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int		is_room(char *line)
 			ft_free_two_d_arr((void**)split_room);
 			return (1);
 		}
-		else
-			NAME_ERR;
 		ft_free_two_d_arr((void**)split_room);
 	}
 	return (0);
