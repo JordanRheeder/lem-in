@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/20 09:50:16 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/21 16:24:43 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,17 @@ void free_room(t_room *room)
 		free(room->next);
 	if (room->room_links)
 		free(room->room_links);
+}
+
+void free_path(t_path *the_path)
+{
+	t_path *temp;
+
+	while (the_path != NULL)
+	{
+		temp = the_path;
+		the_path = the_path->next;
+		free(temp->room_name);
+		free(temp);
+	}
 }
