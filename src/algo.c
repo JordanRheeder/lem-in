@@ -38,9 +38,7 @@ t_links *find_least_visited(t_links *room_links)
 
 void algo(t_log *node_array)
 {
-	t_room 	*current_room;
-	t_room 	*previous_room;
-	t_links *temp_links;
+	t_room	*current_room;
 
 	current_room = node_array->rooms[node_array->start_index];
 
@@ -51,26 +49,37 @@ void algo(t_log *node_array)
 	ft_putstr("\n");
 	while (current_room->room_type != 1)
 	{
-		previous_room = current_room;
 		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
 
-		ft_putstr("Name: ");
-		ft_putstr(current_room->name);
-		ft_putstr("; Type: ");
-		ft_putnbr(current_room->room_type);
-		ft_putstr("\n");
+		// ft_putstr("Name: ");
+		// ft_putstr(current_room->name);
+		// ft_putstr("; Type: ");
+		// ft_putnbr(current_room->room_type);
+		// ft_putstr("; Dead End: ");
+		// ft_putnbr(current_room->dead_end);
+		// ft_putstr("\n");
 
 		if (!current_room->room_links && current_room->room_type != 1)
 		{
-			current_room->dead_end = 1;
-			current_room = node_array->rooms[node_array->start_index];
+			// if (current_room->dead_end < 100)
+				current_room->dead_end++;
+			// else
+			// 	break ;
 
 			ft_putstr("Name: ");
 			ft_putstr(current_room->name);
 			ft_putstr("; Type: ");
 			ft_putnbr(current_room->room_type);
+			ft_putstr("; Dead End: ");
+			ft_putnbr(current_room->dead_end);
 			ft_putstr("\n");
+
+			current_room = node_array->rooms[node_array->start_index];
 		}
 	}
+	if (current_room->dead_end >= 100)
+		ft_putstr("No solution exists.");
+	else if (current_room->room_type == 1)
+		ft_putstr("Reached end room.");
 }
