@@ -1,5 +1,5 @@
-1. Check sgflts where room name doesn't exist
-2. Check for L in room names in validator
+1.
+2.
 3.
 4.
 5.

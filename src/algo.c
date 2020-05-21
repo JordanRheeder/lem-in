@@ -23,7 +23,9 @@ t_links *find_least_visited(t_links *room_links)
 		next_link = ret_link->next;
 		while (next_link)
 		{
-			if (ret_link->room->visited > next_link->room->visited)
+			if (ret_link->room->dead_end)
+				ret_link = next_link;
+			else if (ret_link->room->visited > next_link->room->visited && !next_link->room->dead_end)
 				ret_link = next_link;
 			if (next_link->next)
 				next_link = next_link->next;
@@ -47,40 +49,21 @@ void algo(t_log *node_array)
 	ft_putstr("; Type: ");
 	ft_putnbr(current_room->room_type);
 	ft_putstr("\n");
-	while (current_room->room_type != 1 && current_room->room_links->room)
+	while (current_room->room_type != 1)
 	{
 		previous_room = current_room;
-		// ft_putstr("previous_room Name: ");
-		// ft_putstr(previous_room->name);
-		// ft_putstr("; previous_room Type: ");
-		// ft_putnbr(previous_room->room_type);
-		// ft_putstr("\n");
-		// ft_putstr("asdf\n");
 		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
+
 		ft_putstr("Name: ");
-
-
-		// seg. faults
 		ft_putstr(current_room->name);
-
-
-
-		// ft_putstr(" ");
-		// ft_putstr(current_room->y);
 		ft_putstr("; Type: ");
 		ft_putnbr(current_room->room_type);
 		ft_putstr("\n");
 
-		// ft_putstr("zxcv\n");
 		if (!current_room->room_links && current_room->room_type != 1)
 		{
-			free_room(current_room);
-			if (previous_room->room_links->next)
-				temp_links = previous_room->room_links->next;
-			free(previous_room->room_links);
-			previous_room->room_links = temp_links;
-
+			current_room->dead_end = 1;
 			current_room = node_array->rooms[node_array->start_index];
 
 			ft_putstr("Name: ");
