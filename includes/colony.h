@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:35:08 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/20 10:26:35 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/21 15:42:12 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,45 +38,51 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
-typedef char 		*t_str;
+typedef char		*t_str;
 
 typedef struct		s_links
 {
 	struct	s_room	*room;
 	struct	s_links	*next;
 	struct	s_links	*prev;
-}									t_links;
+}					t_links;
 
-typedef struct s_room
+typedef struct		s_room
 {
-	t_str						name;
-	int							dead_end;
-	int							visited;
-	unsigned int		room_type;
-	unsigned int		x : 8;
-	unsigned int		y : 8;
+	t_str			name;
+	int				dead_end;
+	int				visited;
+	unsigned int	room_type;
+	unsigned int	x : 8;
+	unsigned int	y : 8;
 	struct	s_links	*room_links;
 	struct	s_room	*next;
-}									t_room;
+}					t_room;
 
-typedef struct			s_log
+typedef struct		s_log
 {
-	int							ant_amnt;
-	int							start_index;
-	int							end_index;
-	int							room_count;
-	t_str						*links;
+	int				ant_amnt;
+	int				start_index;
+	int				end_index;
+	int				room_count;
+	t_str			*links;
 	struct	s_room	**rooms;
-}									t_log;
+}					t_log;
+
+typedef struct		s_path
+{
+	t_str			room_name;
+	struct s_path	*next;
+}					t_path;
 
 /*
 **	read_input functions
 */
-int is_command(char *line);
-int is_comment(char *line);
-int is_room(char *line);
-int is_link(char *line);
-t_str *read_input(char *line);
+int		is_command(char *line);
+int		is_comment(char *line);
+int		is_room(char *line);
+int		is_link(char *line);
+t_str	*read_input(char *line);
 
 /*
 **	validation functions
@@ -109,16 +115,17 @@ t_log	*create_links(t_log *node_array, t_str *raw_data, int i);
 /*
 **	helper functions
 */
-int room_count(t_str *raw_data);
-t_room *find_room(t_log *data, t_str room_name);
-void print_map(t_log *node_array);
-void free_room(t_room *room);
-void free_map(t_log *node_array);
+int		room_count(t_str *raw_data);
+t_room	*find_room(t_log *data, t_str room_name);
+void	print_map(t_log *node_array);
+void	free_room(t_room *room);
+void	free_map(t_log *node_array);
+void	free_path(t_path *the_path);
 
 /*
 **	algo functions
 */
-void algo(t_log *node_array);
+t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
 t_links	*find_least_visited(t_links	*room_links);
 
