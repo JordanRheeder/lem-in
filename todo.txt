@@ -1,4 +1,4 @@
-1.
+1. Error check for No solution -> need to do if end is never found in algo
 2.
 3.
 4.

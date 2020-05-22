@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by hde-vos           #+#    #+#             */
-/*   Updated: 2020/05/21 16:01:24 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/22 10:48:11 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_links *find_least_visited(t_links *room_links)
 		next_link = ret_link->next;
 		while (next_link)
 		{
-			if (ret_link->room->dead_end)
+			if (ret_link->room->dead_end || ret_link->room->room_type == 0)
 				ret_link = next_link;
 			else if (ret_link->room->visited > next_link->room->visited && !next_link->room->dead_end)
 				ret_link = next_link;
