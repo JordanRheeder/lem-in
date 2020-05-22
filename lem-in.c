@@ -18,23 +18,14 @@ int main()
 	t_str	*raw_data;
 	t_log	*node_array;
 	t_path	*the_path;
+	t_path	*new_path;
 
 	line = NULL;
 	raw_data = read_input(line);
 	validate_file(raw_data);
 	node_array = create_node_array(raw_data);
 	// print_map(node_array);
-	// printf("====================\nStarting Algorithm\n");
 	the_path = algo(node_array);
-	the_path = path_cleanup(&the_path);
-
-	t_path *temp = the_path;
-
-	while (temp && temp->room_name) {
-		ft_putstr(temp->room_name);
-		temp = temp->next;
-	}
-
-	// printf("Algorithm Finished\n====================\n");
+	path_cleanup(&the_path);
 	// free_map(node_array);
 }

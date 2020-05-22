@@ -129,4 +129,9 @@ t_path	*algo(t_log *node_array);
 void	find_path(t_log *data);
 t_links	*find_least_visited(t_links	*room_links);
 
+/*
+**	mapulation functions
+*/
+void path_cleanup(t_path **the_path);
+
 #endif

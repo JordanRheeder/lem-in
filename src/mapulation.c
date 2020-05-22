@@ -12,7 +12,7 @@
 
 #include "../includes/colony.h"
 
-void	free_path_node(t_path	*temp_curr, t_path *temp_prev)
+void free_path_node(t_path *temp_curr, t_path *temp_prev)
 {
   t_path *temp_next;
 
@@ -23,7 +23,7 @@ void	free_path_node(t_path	*temp_curr, t_path *temp_prev)
   temp_prev->next = temp_next;
 }
 
-t_path *path_cleanup(t_path **the_path)
+void path_cleanup(t_path **the_path)
 {
   t_path *curr;
   t_path *iterator;
@@ -32,7 +32,7 @@ t_path *path_cleanup(t_path **the_path)
   while (curr->next)
   {
     iterator = curr->next;
-    while (iterator->next)
+    while (iterator)
     {
       if (ft_strequ(iterator->room_name, curr->room_name))
       {
@@ -42,15 +42,20 @@ t_path *path_cleanup(t_path **the_path)
         }
         free_path_node(curr->next, curr);
       }
-      iterator = iterator->next;
+      if (iterator->next)
+        iterator = iterator->next;
+      else
+        break ;
     }
     curr = curr->next;
   }
+
   t_path *temp = *the_path;
-	while (temp) {
-		ft_putstr(temp->room_name);
+
+  while (temp)
+  {
+    ft_putstr(temp->room_name);
     ft_putstr("\n");
-		temp = temp->next;
-	}
-  return (*the_path);
+    temp = temp->next;
+  }
 }

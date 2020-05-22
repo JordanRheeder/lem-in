@@ -70,38 +70,24 @@ t_path	*algo(t_log *node_array)
 
 	current_room = node_array->rooms[node_array->start_index];
 	the_path = NULL;
+	if (!the_path)
+		the_path = start_path(current_room->name);
+	else
+		add_to_path(the_path, current_room->name);
 	while (current_room->room_type != 1)
 	{
+		current_room = find_least_visited(current_room->room_links)->room;
 		if (!the_path)
 			the_path = start_path(current_room->name);
 		else
 			add_to_path(the_path, current_room->name);
-		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
-
-		ft_putstr("Name: ");
-		ft_putstr(current_room->name);
-		ft_putstr("; Type: ");
-		ft_putnbr(current_room->room_type);
-		ft_putstr("; Dead End: ");
-		ft_putnbr(current_room->dead_end);
-		ft_putstr("\n");
-
 		if (!current_room->room_links && current_room->room_type != 1)
 		{
 			current_room->dead_end++;
 			free_path(the_path);
 			the_path = NULL;
 			current_room = node_array->rooms[node_array->start_index];
-
-			ft_putstr("Name: ");
-			ft_putstr(current_room->name);
-			ft_putstr("; Type: ");
-			ft_putnbr(current_room->room_type);
-			ft_putstr("; Dead End: ");
-			ft_putnbr(current_room->dead_end);
-			ft_putstr("\n");
-
 			current_room = node_array->rooms[node_array->start_index];
 		}
 	}
