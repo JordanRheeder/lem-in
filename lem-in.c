@@ -26,13 +26,15 @@ int main()
 	// print_map(node_array);
 	// printf("====================\nStarting Algorithm\n");
 	the_path = algo(node_array);
-	path_cleanup(the_path);
+	the_path = path_cleanup(&the_path);
+
 	t_path *temp = the_path;
-	while (temp) {
-		printf("%s->", temp->room_name);
+
+	while (temp && temp->room_name) {
+		ft_putstr(temp->room_name);
 		temp = temp->next;
 	}
-	printf("NULL\n");
+
 	// printf("Algorithm Finished\n====================\n");
 	// free_map(node_array);
 }

@@ -72,11 +72,11 @@ t_path	*algo(t_log *node_array)
 	the_path = NULL;
 	while (current_room->room_type != 1)
 	{
-		current_room = find_least_visited(current_room->room_links)->room;
 		if (!the_path)
 			the_path = start_path(current_room->name);
 		else
 			add_to_path(the_path, current_room->name);
+		current_room = find_least_visited(current_room->room_links)->room;
 		current_room->visited++;
 
 		ft_putstr("Name: ");
