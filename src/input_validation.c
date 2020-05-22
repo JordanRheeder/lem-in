@@ -35,8 +35,6 @@ int		is_room(char *line)
 {
 	char** split_room;
 
-	ft_putstr(line);
-	ft_putstr("\n");
 	if (ft_wordcount(line, ' ') == 3)
 	{
 		split_room = ft_strsplit(line, ' ');

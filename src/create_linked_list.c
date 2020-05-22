@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:34:57 by rengelbr          #+#    #+#             */
-/*   Updated: 2020/05/20 13:08:17 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/21 17:41:52 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 	int j;
 	int k;
 	char **rooms;
-	t_links *temp_link;
+	t_links *temp_link1;
+	t_links *temp_link2;
 
 	while (raw_data[i])
 	{
@@ -43,7 +44,8 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			j = 0;
 			k = 0;
 			rooms = ft_strsplit(raw_data[i], '-');
-			temp_link = (t_links*)malloc(sizeof(t_links));
+			temp_link1 = (t_links*)malloc(sizeof(t_links));
+			temp_link2 = (t_links*)malloc(sizeof(t_links));
 			while (!ft_strequ(rooms[0], node_array->rooms[j]->name))
 				j++;
 			while (!ft_strequ(rooms[1], node_array->rooms[k]->name))
@@ -56,15 +58,27 @@ t_log *create_links(t_log *node_array, t_str *raw_data, int i)
 			}
 			if (node_array->rooms[j]->room_links == NULL)
 			{
-				temp_link->room = node_array->rooms[k];
-				temp_link->next = NULL;
-				node_array->rooms[j]->room_links = temp_link;
+				temp_link1->room = node_array->rooms[k];
+				temp_link1->next = NULL;
+				node_array->rooms[j]->room_links = temp_link1;
 			}
 			else if (node_array->rooms[j]->room_type != 1)
 			{
-				temp_link->room = node_array->rooms[k];
-				temp_link->next = node_array->rooms[j]->room_links;
-				node_array->rooms[j]->room_links = temp_link;
+				temp_link1->room = node_array->rooms[k];
+				temp_link1->next = node_array->rooms[j]->room_links;
+				node_array->rooms[j]->room_links = temp_link1;
+			}
+			if (node_array->rooms[k]->room_links == NULL && k != node_array->start_index)
+			{
+				temp_link2->room = node_array->rooms[j];
+				temp_link2->next = NULL;
+				node_array->rooms[k]->room_links = temp_link2;
+			}
+			else if (node_array->rooms[k]->room_type != 1 && k != node_array->start_index)
+			{
+				temp_link2->room = node_array->rooms[j];
+				temp_link2->next = node_array->rooms[k]->room_links;
+				node_array->rooms[k]->room_links = temp_link2;
 			}
 			ft_free_two_d_arr((void **)rooms);
 		}

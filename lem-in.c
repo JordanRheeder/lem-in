@@ -23,11 +23,11 @@ int main()
 	raw_data = read_input(line);
 	validate_file(raw_data);
 	node_array = create_node_array(raw_data);
-	print_map(node_array);
+	// print_map(node_array);
 	// printf("====================\nStarting Algorithm\n");
 	the_path = algo(node_array);
 	t_path *temp = the_path;
-	while (temp != NULL) {
+	while (temp) {
 		printf("%s->", temp->room_name);
 		temp = temp->next;
 	}
