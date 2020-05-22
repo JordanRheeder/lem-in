@@ -26,6 +26,7 @@ int main()
 	// print_map(node_array);
 	// printf("====================\nStarting Algorithm\n");
 	the_path = algo(node_array);
+	path_cleanup(the_path);
 	t_path *temp = the_path;
 	while (temp) {
 		printf("%s->", temp->room_name);
