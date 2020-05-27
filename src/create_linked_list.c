@@ -145,6 +145,5 @@ t_log *create_node_array(t_data *raw_data)
 		LINK_ERR;
 	}
 	create_links(node_array, raw_data, i);
-	free_data(raw_data);
 	return (node_array);
 }

@@ -77,8 +77,17 @@ typedef struct		s_log
 typedef struct		s_path
 {
 	t_str			room_name;
-	struct s_path	*next;
+	struct 		s_path	*next;
 }					t_path;
+
+typedef struct		s_ants
+{
+	int			ant_name;
+	int			moves;
+	struct	s_path *room;
+	struct	s_ants *next;
+	struct	s_ants *prev;
+}					t_ants;
 
 typedef struct		s_data
 {
@@ -138,6 +147,11 @@ t_path	*start_path(t_str room_name);
 void	add_to_path(t_path *the_path, t_str room_name);
 t_path	*copy_path(t_path *path);
 t_path *shortest_path(t_path **paths, int path_count);
+
+/*
+**	helper functions2
+*/
+void ft_putroom(int ant_name, char *room_name);
 
 /*
 **	algo functions

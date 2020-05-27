@@ -1,5 +1,5 @@
-1. Error check for No solution -> need to do if end is never found in algo
-2. Print the_path
-3.
-4. Free erryting before exiting on ERROR
-5.
+1. Free erryting before exiting on ERROR (leaks)
+2. more testing
+3. print initial input
+4. read PDF and marking sheet for edge case requirements
+5. final mock marking test

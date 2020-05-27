@@ -179,3 +179,12 @@ t_path *shortest_path(t_path **paths, int path_count)
 	}
 	return (paths[ml_index]);
 }
+
+void ft_putroom(int ant_name, char *room_name)
+{
+	ft_putstr("L");
+	ft_putnbr(ant_name);
+	ft_putstr("-");
+	ft_putstr(room_name);
+	ft_putstr(" ");
+}

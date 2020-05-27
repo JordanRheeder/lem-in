@@ -44,6 +44,5 @@ t_data		*read_input(char *line)
 		}
 		free(line);
 	}
-	// free(raw_data[i]);
 	return (raw_data);
 }
