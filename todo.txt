@@ -3,3 +3,4 @@
 3. print initial input
 4. read PDF and marking sheet for edge case requirements
 5. final mock marking test
+print_map_before_moving_ants_one_by_one_at_a_time
