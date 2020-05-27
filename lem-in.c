@@ -93,7 +93,21 @@ void print_map_before_moving_ants_one_by_one_at_a_time(t_data *raw_data)
 	}
 }
 
-int main()
+void free_ants(t_ants *ants)
+{
+	t_ants *temp;
+
+	temp = ants;
+	while (ants)
+	{
+		temp = ants->next;
+		free(temp);
+		ants = temp;
+	}
+	free(ants);
+}
+
+int asdf()
 {
 	char *line;
 	t_data	*raw_data;
@@ -111,5 +125,11 @@ int main()
 		free_data(raw_data);
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
+	free_ants(ants);
 	return (0);
+}
+
+int main()
+{
+	asdf();
 }
