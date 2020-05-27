@@ -102,25 +102,28 @@ int main()
 {
 	char *line;
 	t_data	*raw_data;
-	t_log 	*node_array;
-	t_path *the_path;
-	t_path *the_temp;
-	t_ants *ants;
-	t_ants *temp;
+	t_data	*temp_data;
+	t_log		*node_array;
+	t_path	*the_path;
+	t_path	*the_temp;
+	t_ants	*ants;
+	t_ants	*temp;
+	int			i;
 
+	i = 0;
 	line = NULL;
 	raw_data = read_input(line);
 	validate_file(raw_data);
 	node_array = create_node_array(raw_data);
 	the_path = algo(node_array);
-
-	// the_temp = the_path;
-	// while (the_temp)
-	// {
-	// 	ft_putstr(the_temp->room_name);
-	// 	ft_putstr("\n");
-	// 	the_temp = the_temp->next;
-	// }
+	temp_data = raw_data;
+	while (temp_data)
+	{
+		ft_putstr(temp_data->line);
+		ft_putstr("\n");
+		temp_data = temp_data->next;
+	}
+	free_data(raw_data);
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
 	return (0);
