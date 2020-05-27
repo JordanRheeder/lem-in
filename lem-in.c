@@ -98,11 +98,24 @@ t_ants *create_ants(int ant_amount)
 	return (head);
 }
 
+void print_map_before_moving_ants_one_by_one_at_a_time(t_data *raw_data)
+{
+	t_data	*temp_data;
+
+	temp_data = raw_data;
+	while (temp_data)
+	{
+		ft_putstr(temp_data->line);
+		ft_putstr("\n");
+		temp_data = temp_data->next;
+	}
+	free_data(raw_data);
+}
+
 int main()
 {
 	char *line;
 	t_data	*raw_data;
-	t_data	*temp_data;
 	t_log		*node_array;
 	t_path	*the_path;
 	t_path	*the_temp;
@@ -116,14 +129,7 @@ int main()
 	validate_file(raw_data);
 	node_array = create_node_array(raw_data);
 	the_path = algo(node_array);
-	temp_data = raw_data;
-	while (temp_data)
-	{
-		ft_putstr(temp_data->line);
-		ft_putstr("\n");
-		temp_data = temp_data->next;
-	}
-	free_data(raw_data);
+	print_map_before_moving_ants_one_by_one_at_a_time(raw_data);
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
 	return (0);
