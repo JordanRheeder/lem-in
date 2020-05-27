@@ -107,7 +107,7 @@ void free_ants(t_ants *ants)
 	free(ants);
 }
 
-int asdf()
+int main()
 {
 	char *line;
 	t_data	*raw_data;
@@ -127,9 +127,4 @@ int asdf()
 	generate_moves(ants, the_path, node_array);
 	free_ants(ants);
 	return (0);
-}
-
-int main()
-{
-	asdf();
 }
