@@ -101,7 +101,7 @@ void free_ants(t_ants *ants)
 	while (ants)
 	{
 		temp = ants->next;
-		free(temp);
+		free(ants);
 		ants = temp;
 	}
 	free(ants);
