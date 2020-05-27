@@ -6,7 +6,7 @@
 /*   By: rengelbr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 11:28:51 by jrheeder          #+#    #+#             */
-/*   Updated: 2020/05/24 13:09:28 by rengelbr         ###   ########.fr       */
+/*   Updated: 2020/05/27 16:26:06 by rengelbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void print_map_before_moving_ants_one_by_one_at_a_time(t_data *raw_data)
 		ft_putstr("\n");
 		temp_data = temp_data->next;
 	}
+	ft_putchar('\n');
 }
 
 void free_ants(t_ants *ants)
@@ -125,6 +126,6 @@ int main()
 		free_data(raw_data);
 	ants = create_ants(node_array->ant_amnt + 1);
 	generate_moves(ants, the_path, node_array);
-	free_ants(ants);
+	// free_ants(ants);
 	return (0);
 }
