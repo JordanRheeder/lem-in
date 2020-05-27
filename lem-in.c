@@ -47,6 +47,7 @@ void generate_moves(t_ants *ants, t_path *the_path, t_log *node_array)
 		if (curr_ant->next)
 			last_ant = curr_ant->next;
 	}
+	free_path(the_path);
 }
 
 t_ants *create_ants(int ant_amount)
