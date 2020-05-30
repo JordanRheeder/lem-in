@@ -124,18 +124,22 @@ t_log *create_node_array(t_data *raw_data)
 		}
 		else if (is_command(temp->line))
 		{
-			node_array->rooms[j] = create_node(temp->next->line);
 			if (ft_strequ("##start", temp->line))
 			{
+				while (!is_room(temp->line))
+					temp = temp->next;
+				node_array->rooms[j] = create_node(temp->line);
 				node_array->start_index = j;
 				node_array->rooms[j]->room_type = 0;
 			}
 			else if (ft_strequ("##end", temp->line))
 			{
+				while (!is_room(temp->line))
+					temp = temp->next;
+				node_array->rooms[j] = create_node(temp->line);
 				node_array->end_index = j;
 				node_array->rooms[j]->room_type = 1;
 			}
-			temp = temp->next;
 			i++;
 			j++;
 		}
