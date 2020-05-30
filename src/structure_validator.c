@@ -21,9 +21,17 @@ int validate_file(t_data *data)
 		if (ft_only_digits(temp->line) && phase == 0)
 			phase = 1;
 		if (ft_strequ(temp->line, "##start") && phase == 1)
+		{
+			if (start != -1)
+				ORDER_ERR;
 			start = 1;
+		}
 		else if (ft_strequ(temp->line, "##end") && phase == 1)
+		{
+			if (end != -1)
+				ORDER_ERR;
 			end = 1;
+		}
 		else if (is_room(temp->line))
 		{
 			if (phase != 1)
